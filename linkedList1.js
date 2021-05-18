@@ -5,7 +5,6 @@ class Node {
     }
 }
 
-
 class LinkedList {
     constructor(value) {
         this.head = {
@@ -16,6 +15,7 @@ class LinkedList {
         this.length = 1;
     }
     append(value) {
+        //add to end
        const newNode = new Node(value)
         this.tail.next = newNode;
         this.tail = newNode;
@@ -23,6 +23,7 @@ class LinkedList {
         return this
     }
     prepend(value) {
+        //add to beginning
         const newNode = new Node(value)
         newNode.next = this.head;
         this.head = newNode;
@@ -40,13 +41,15 @@ class LinkedList {
     }
     insert(index, value) {
         //check params
-        if (index >= this.length) {
+        //if index is greater than or equal to the last in the list, append the value to the end
+        if (index >= this.length) {       
             return this.append(value)
         }
         const newNode = {
             value: value,
             next: null
         };
+        //need to find the target index but go to the one before it to change pointers
         const leader = this.traverseToIndex(index-1)
         const holdingPointer = leader.next;
         leader.next = newNode;
